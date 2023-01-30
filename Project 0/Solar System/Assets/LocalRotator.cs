@@ -8,8 +8,7 @@ public class LocalRotator : MonoBehaviour
     public float orbitRotationDegrees = 45;
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         Transform t = GetComponent<Transform>();
         
         //Rotate around myself
@@ -20,6 +19,6 @@ public class LocalRotator : MonoBehaviour
         {
             t.RotateAround(gameObject.transform.parent.transform.position, Vector3.up, orbitRotationDegrees * Time.deltaTime);
         }
-        
     }
 }
+ 
