@@ -33,7 +33,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Collided!");
+        //Debug.Log("Collided!");
         GameObject otherGameObject = other.gameObject;
         if (otherGameObject.CompareTag("Paddle"))
         {
@@ -44,13 +44,13 @@ public class BallController : MonoBehaviour
             // Calculate Pong-Accurate Trajectory (Contact height determines exit angle)
             float heightDif = otherGameObject.transform.position.y - transform.position.y;
             Vector3 bounceDirection = Quaternion.Euler(0f, 0f, heightDif == 0 ? 0f : heightDif * (player1 ? -45f : 45f)) * (player1 ? Vector3.right : Vector3.left);
-            Debug.Log($"Bouncing by {(heightDif * (player1 ? -45f : 45f)).ToString("F2")} Degrees");
+            //Debug.Log($"Bouncing by {(heightDif * (player1 ? -45f : 45f)).ToString("F2")} Degrees");
 
             // Apply Physics Update
             if (incrementForce)
             {
                 _force += 1000f;
-                Debug.Log($"Force is now {_force.ToString("F2")}");
+                //Debug.Log($"Force is now {_force.ToString("F2")}");
             }
             _rb.velocity = Vector3.zero;
             _rb.AddForce(bounceDirection * _force, ForceMode.Force);
@@ -59,7 +59,7 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered! Force is reset");
+        //Debug.Log("Triggered! Force is reset");
         // On_Score: Restart
         string scoringPlayer = "", otherPlayer = "";
         _force = 1000f;
