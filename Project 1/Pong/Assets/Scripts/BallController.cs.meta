@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0468b3e9f0b78bb4a9ce5ff6a2ebb544
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scoreTextObject: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - paddleClip: {fileID: 8300000, guid: 918c547b557ed5041b9e57263356b39f, type: 3}
+  - wallClip: {fileID: 8300000, guid: 701865ffdce9f6d44819a371fda9b14a, type: 3}
+  - startClip: {fileID: 8300000, guid: d5190b52d697e9144b74c0ac2998ab9b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
