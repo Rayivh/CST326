@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,16 +18,20 @@ public class PlayerController : MonoBehaviour
     public float longClickDuration = 1f;
     float _clickLength;
     bool _click;
-    private Rigidbody _rbody;
-    private Collider _col;
+    Rigidbody _rbody;
+    Collider _col;
+    
+    //Animation Hookup
+    Animator _animator; 
 
-    // Update is called once per frame
     private void Start()
     {
         state = "Normal";
         _col = GetComponent<Collider>();
         _rbody = GetComponent<Rigidbody>();
         _rbody.isKinematic = false;
+        _animator = GetComponent<Animator>();
+        //_animator.SetBool("JumpState", false);
     }
 
     void Update()
@@ -55,8 +60,11 @@ public class PlayerController : MonoBehaviour
     void NormalMovementUpdate()
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
-        _rbody.velocity += Vector3.right * (horizontalAxis * Time.deltaTime * acceleration);
+        
 
+        _rbody.velocity += Vector3.right * (horizontalAxis * Time.deltaTime * acceleration);
+        transform.rotation = Quaternion.Euler(0, Mathf.Clamp(_rbody.velocity.x, -1, 1) * -90 + -180, 0);
+        
         float halfHeight = _col.bounds.extents.y;
 
         isGrounded = Physics.Raycast( new Vector3(transform.position.x, transform.position.y + halfHeight, transform.position.z), Vector3.down, halfHeight);
@@ -70,7 +78,15 @@ public class PlayerController : MonoBehaviour
                 _click = true;
                 _clickLength = 0f;
                 _rbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                
+                //_animator.SetBool("JumpState", true);
+                
             }
+        }
+
+        if (isGrounded)
+        {
+            //_animator.SetBool("JumpState", false);
         }
 
         if (_click && Input.GetKey(KeyCode.Space))
@@ -94,6 +110,17 @@ public class PlayerController : MonoBehaviour
 
         Color lineColor = isGrounded ? Color.green : Color.red;
         Debug.DrawLine(transform.position, transform.position + Vector3.down * halfHeight, lineColor, 0f, false);
+        
+        // Animation
+        //Speed Calculation
+        float horizontalSpeed = Mathf.Abs(_rbody.velocity.x);
+        float verticalSpeed = Mathf.Abs(_rbody.velocity.y);
+        _animator.SetFloat("Horizontal Speed", horizontalSpeed);
+        _animator.SetFloat("Vertical Speed", verticalSpeed);
+
+        
+
+
     }
 
     void DeathProcess()
