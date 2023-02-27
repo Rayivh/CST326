@@ -20,8 +20,14 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerText.text = "Time: " + (time - (int)Time.realtimeSinceStartup).ToString("F0");
+        int timeLeft = time - (int)Time.realtimeSinceStartup;
+        timerText.text = "Time: " + (timeLeft).ToString("F0");
         coinText.text = $"Coins: {coins}";
         scoreText.text = $"Score: {score}";
+
+        if (timeLeft <= 0)
+        {
+            Debug.Log("GAME OVER!");
+        }
     }
 }
