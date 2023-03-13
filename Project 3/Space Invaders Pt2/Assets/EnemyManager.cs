@@ -26,8 +26,6 @@ public class EnemyManager : MonoBehaviour {
    
    void Start()
    {
-
-      DontDestroyOnLoad(gameObject);
       Enemy.OnDeath += CleanCorpse;
       
       transform.Translate(-gridWidth/2, gridHeight/2, 0);
@@ -42,7 +40,7 @@ public class EnemyManager : MonoBehaviour {
             GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(i, j, 0) * 1.5f, Quaternion.identity, transform);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             enemy.GetComponent<Animator>().runtimeAnimatorController = animationController;
-            DontDestroyOnLoad(enemy);
+            
             
             if (j == (int) gridWidth - 1)
             {
@@ -70,16 +68,15 @@ public class EnemyManager : MonoBehaviour {
          speed+=deathIncrement;
       }
       enemies.Remove(enemy);
-
-      if (enemies.Count == 0)
-      {
-         GameObject.Find("SceneSwitcher").GetComponent<SceneSwitcher>().LoadGameScene("Credits");
-      }
    }
    
    void Update() {
       if (SceneManager.GetActiveScene().name == "SpaceInvaders")
       {
+         if (enemies.Count == 0)
+         {
+            GameObject.Find("SceneSwitcher").GetComponent<SceneSwitcher>().LoadGameScene("Credits");
+         }
          MoveChildren();
          if (ChildHitsWall())
          {
