@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a183bc7342650b54994466ba4a687be7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemyPrefab: {fileID: 1920279737308783363, guid: 5184882c3fad3c34cabb5c64ddc72a05, type: 3}
+  - animationController: {fileID: 9100000, guid: c5b9f64d5fa897d46bd20f1a6e63f266, type: 2}
+  - crabSprite: {fileID: -1742210381, guid: d2b40f2860f17ac4e99646479d89f8fe, type: 3}
+  - squidSprite: {fileID: -1273704929, guid: d2b40f2860f17ac4e99646479d89f8fe, type: 3}
+  - octopusSprite: {fileID: -398926466, guid: d2b40f2860f17ac4e99646479d89f8fe, type: 3}
+  - ufoSprite: {fileID: 19650239, guid: d2b40f2860f17ac4e99646479d89f8fe, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
